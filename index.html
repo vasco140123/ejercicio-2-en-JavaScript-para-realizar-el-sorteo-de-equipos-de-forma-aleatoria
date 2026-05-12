@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula virtual — Ruleta y equipos</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <header class="encabezado">
+    <h1>Aula virtual</h1>
+    <p class="subtitulo">Ruleta dinámica y sorteo de equipos (HTML, CSS y JavaScript puro)</p>
+  </header>
+
+  <main class="principal">
+    <section class="panel panel-ruleta" aria-labelledby="titulo-ruleta">
+      <h2 id="titulo-ruleta">Ruleta de participantes</h2>
+      <div class="ruleta-contenedor">
+        <div class="indicador-ruleta" id="indicadorTrianguloRojo" aria-hidden="true"></div>
+        <canvas
+          id="lienzoRuleta"
+          width="360"
+          height="360"
+          role="img"
+          aria-label="Ruleta; pulse, barra espaciadora o Iniciar para girar"
+          tabindex="0"
+        ></canvas>
+      </div>
+      <p class="respuesta-sorteo" id="textoElementoSeleccionado" aria-live="polite">
+        Pulse la ruleta, Espacio o «Iniciar» para sortear entre los elementos visibles.
+      </p>
+      <div class="botones-ruleta">
+        <button type="button" id="botonIniciarGiro">Iniciar</button>
+        <button type="button" id="botonReiniciarSorteo">Reiniciar</button>
+      </div>
+      <p class="ayuda-teclas">
+        <kbd>Espacio</kbd> o clic en la ruleta: girar · <kbd>S</kbd>: ocultar último sorteado ·
+        <kbd>E</kbd>: edición · <kbd>R</kbd>: reiniciar · <kbd>F</kbd>: pantalla completa
+      </p>
+    </section>
+
+    <section class="panel panel-lista" aria-labelledby="titulo-lista">
+      <h2 id="titulo-lista">Lista (un elemento por línea)</h2>
+      <div class="envoltorio-textarea" id="envoltorioTextarea">
+        <pre class="capa-resaltado" id="capaResaltadoLineas" aria-hidden="true"></pre>
+        <textarea
+          id="areaTextoParticipantes"
+          rows="14"
+          spellcheck="false"
+          placeholder="Escriba o pegue un nombre por línea. Pulse E o haga clic aquí para editar."
+        ></textarea>
+      </div>
+      <p class="estado-edicion" id="textoEstadoEdicion">Modo lista (solo lectura). Pulse <kbd>E</kbd> o haga clic en el área para editar.</p>
+    </section>
+
+    <section class="panel panel-equipos" aria-labelledby="titulo-equipos">
+      <h2 id="titulo-equipos">Sorteo de equipos</h2>
+      <div class="equipos-controles">
+        <label for="entradaNumeroEquipos">Número de equipos</label>
+        <input type="number" id="entradaNumeroEquipos" min="2" max="12" value="2" />
+        <button type="button" id="botonSortearEquipos">Sortear equipos</button>
+      </div>
+      <div class="equipos-resultado" id="contenedorEquiposSorteados"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <small>Datos de la lista en <code>localStorage</code> (clave <code>aulaVirtual_listaParticipantes</code>).</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
